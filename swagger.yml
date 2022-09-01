@@ -1,0 +1,81 @@
+openapi: 3.0.1
+info:
+  title: Api Encurtador de URL
+  description: Encurta uma URL
+  version: 1.0.0
+paths:
+  /urls:
+    get:
+      summary: Busca todas as URLs dentro de um período
+      operationId: searchUrl
+      parameters:
+        - name: startDate
+          in: path
+          description: Data inicio
+          required: true
+          schema:
+            type: long
+        - name: endDate
+          in: path
+          description: Data fim
+          required: true
+          schema:
+            type: long
+      responses:
+        200:
+          description: Quando tudo der certo
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  url:
+                    type: string
+                  urlEncurted:
+                    type: string
+                  date:
+                    type: number
+  /url:
+    get:
+      summary: Busca uma URL pelo ID
+      operationId: getUrl
+      parameters:
+        - name: id
+          in: path
+          description: Id da URL
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Quando tudo der certo
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  url:
+                    type: string
+                  urlEncurted:
+                    type: string
+                  date:
+                    type: number
+  /url/encurt:
+    post:
+      summary: Encurta uma URL
+      operationId: setUrl
+      parameters:
+        - name: url
+          in: path
+          description: Url completa
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Quando tudo der certo
+          content:
+            application/json:
+              schema:
+                type: string
+                
